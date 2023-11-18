@@ -1,10 +1,12 @@
 import React from "react";
 import Main from "../components/Main";
+import Row from "../components/Row";
 
 const Home = () => {
   return (
-    <div className="h-screen">
+    <div className="">
       <Main />
+      <Row title={"Popular"}/>
     </div>
   );
 };
