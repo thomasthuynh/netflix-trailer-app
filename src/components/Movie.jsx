@@ -5,7 +5,6 @@ const Movie = ({ item }) => {
   const [like, setLike] = useState(false);
 
   return (
-    <div>
       <div
         className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] p-2 cursor-pointer relative inline-block"
       >
@@ -26,7 +25,6 @@ const Movie = ({ item }) => {
           </p>
         </div>
       </div>
-    </div>
   );
 };
 

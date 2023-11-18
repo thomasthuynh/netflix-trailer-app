@@ -3,12 +3,12 @@ import options from "../Options";
 
 import Movie from "./Movie";
 
-const Row = ({ title }) => {
+const Row = ({ title, url }) => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     fetch(
-      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+      url,
       options
     )
       .then((response) => response.json())
