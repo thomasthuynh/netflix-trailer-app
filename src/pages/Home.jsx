@@ -1,10 +1,12 @@
-import React from 'react'
-import Main from '../components/Main'
+import React from "react";
+import Main from "../components/Main";
 
 const Home = () => {
   return (
-    <Main />
-  )
-}
+    <div className="h-screen">
+      <Main />
+    </div>
+  );
+};
 
-export default Home
+export default Home;
