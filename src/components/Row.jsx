@@ -4,18 +4,20 @@ import Movie from "./Movie";
 
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 
-const Row = ({ title, url }) => {
+const Row = ({ title, url, setPlayer }) => {
   const [movies, setMovies] = useState([]);
   const [leftSlider, setLeftSlider] = useState(false);
   const [rightSlider, setRightSlider] = useState(true);
   const sliderRef = useRef();
 
   const slideLeft = () => {
-    sliderRef.current.scrollLeft = sliderRef.current.scrollLeft - sliderRef.current.clientWidth + 100;
+    sliderRef.current.scrollLeft =
+      sliderRef.current.scrollLeft - sliderRef.current.clientWidth + 100;
   };
 
   const slideRight = () => {
-    sliderRef.current.scrollLeft = sliderRef.current.scrollLeft + sliderRef.current.clientWidth - 100;
+    sliderRef.current.scrollLeft =
+      sliderRef.current.scrollLeft + sliderRef.current.clientWidth - 100;
   };
 
   useEffect(() => {
@@ -28,7 +30,8 @@ const Row = ({ title, url }) => {
       }
 
       // Right slider
-      const maxScrollLeft = sliderRef.current.scrollWidth - sliderRef.current.clientWidth;
+      const maxScrollLeft =
+        sliderRef.current.scrollWidth - sliderRef.current.clientWidth;
 
       if (sliderRef.current.scrollLeft >= maxScrollLeft) {
         setRightSlider(false);
@@ -47,6 +50,16 @@ const Row = ({ title, url }) => {
       .catch((err) => console.error(err));
   }, []);
 
+  // useEffect(() => {
+  //   fetch(
+  //     "https://api.themoviedb.org/3/movie/951491/videos?language=en-US",
+  //     options
+  //   )
+  //     .then((response) => response.json())
+  //     .then((response) => console.log(response))
+  //     .catch((err) => console.error(err));
+  // }, []);
+
   return (
     <div>
       <h2 className=" text-white font-bold p-4 sm:text-lg ">{title}</h2>
@@ -64,9 +77,10 @@ const Row = ({ title, url }) => {
         <div
           ref={sliderRef}
           className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
+          onClick={() => setPlayer(true)}
         >
           {movies.map((item, id) => (
-            <Movie item={item} key={id} />
+            <Movie item={item} key={id}/>
           ))}
         </div>
         <FaChevronRight

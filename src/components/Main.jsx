@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import options from "../Options";
+import MovieInfo from "../components/MovieInfo";
 
 import { FaStar } from "react-icons/fa";
 
-const Main = () => {
+const Main = ({ player, setPlayer }) => {
   const [movies, setMovies] = useState([]);
-  const featuredMovie = movies[Math.floor(Math.random() * movies.length)];
+  const [featuredMovie, setFeaturedMovie] = useState();
 
   const truncateStr = (str, chars) => {
     if (str?.length > chars) {
@@ -25,10 +26,13 @@ const Main = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  console.log(featuredMovie);
+  useEffect(() => {
+    setFeaturedMovie(movies[Math.floor(Math.random() * movies.length)]);
+  }, [movies]);
 
   return (
     <div className="featuredImg w-full relative text-white h-[550px] xl:h-[700px]">
+      {player && <MovieInfo setPlayer={setPlayer} />}
       <div className="absolute w-full h-[550px] xl:h-[700px] bg-gradient-to-r from-black"></div>
       {featuredMovie && (
         <img
@@ -39,9 +43,7 @@ const Main = () => {
       )}
       <div className="absolute top-[50%] translate-y-[-50%] p-4 max-w-[90%] md:max-w-[65%] xl:max-w-[40%]">
         <div>
-          <h1 className="text-4xl sm:text-5xl my-4">
-            {featuredMovie?.title}
-          </h1>
+          <h1 className="text-4xl sm:text-5xl my-4">{featuredMovie?.title}</h1>
           <p>{truncateStr(featuredMovie?.overview, 200)}</p>
           <p className="text-xl my-4 flex items-center">
             <FaStar className="text-yellow-500 mr-2" />
