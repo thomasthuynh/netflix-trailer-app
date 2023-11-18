@@ -52,7 +52,7 @@ const Main = () => {
           <button className="bg-red-600 text-white border border-red-600 hover:bg-red-700 hover:border-red-700 px-5 py-3 rounded cursor-pointer mr-4 text-sm sm:text-base">
             Play
           </button>
-          <button className="bg-black border hover:bg-white hover:text-black hover:bg-red-700 px-5 py-3 rounded cursor-pointer text-sm sm:text-base">
+          <button className="bg-black border hover:bg-white hover:text-black px-5 py-3 rounded cursor-pointer text-sm sm:text-base">
             Add to Favorites
           </button>
         </div>
