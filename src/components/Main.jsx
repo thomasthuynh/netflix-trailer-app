@@ -28,7 +28,7 @@ const Main = () => {
   console.log(featuredMovie);
 
   return (
-    <div className="w-full relative text-white h-[550px] xl:h-[700px]">
+    <div className="featuredImg w-full relative text-white h-[550px] xl:h-[700px]">
       <div className="absolute w-full h-[550px] xl:h-[700px] bg-gradient-to-r from-black"></div>
       {featuredMovie && (
         <img
