@@ -21,7 +21,7 @@ const Row = ({ title, url }) => {
       <h2 className="text-white font-bold p-4 sm:text-lg ">{title}</h2>
 
       <div className="relative flex items-center">
-        <div id={"slider"}>
+        <div id={"slider"} className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative">
           {movies.map((item, id) => (
             <Movie item={item} key={id} />
           ))}

@@ -28,13 +28,13 @@ const Main = () => {
   console.log(featuredMovie);
 
   return (
-    <div className="w-full relative text-white h-[550px]">
-      <div className="absolute w-full h-[550px] bg-gradient-to-r from-black"></div>
+    <div className="w-full relative text-white h-[550px] xl:h-[700px]">
+      <div className="absolute w-full h-[550px] xl:h-[700px] bg-gradient-to-r from-black"></div>
       {featuredMovie && (
         <img
           src={`https://image.tmdb.org/t/p/original/${featuredMovie.backdrop_path}`}
           alt={featuredMovie.title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-top"
         />
       )}
       <div className="absolute top-[50%] translate-y-[-50%] p-4 max-w-[90%] md:max-w-[65%] xl:max-w-[40%]">
