@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
 import ReactPlayer from "react-player";
-import options from "../Options";
 import MovieContext from "../context/MovieContext";
 
 import { AiTwotoneCloseCircle } from "react-icons/ai";
 
 const MovieInfo = () => {
-  const { setPlayer } = useContext(MovieContext);
+  const { selectedMovie, setPlayer } = useContext(MovieContext);
 
   return (
     <div className="absolute h-[750px] w-[750px] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-33%] border border-white z-10">
@@ -17,12 +16,15 @@ const MovieInfo = () => {
           onClick={() => setPlayer(false)}
         />
         <ReactPlayer
-          // url={}
+          // url={`https://www.youtube.com/watch?v=`}
           width={"100%"}
           height={"100%"}
           controls={true}
           playing={true}
         />
+      </div>
+      <div>
+        <p>{selectedMovie.overview}</p>
       </div>
     </div>
   );

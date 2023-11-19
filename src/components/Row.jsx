@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import options from "../Options";
+import axios from "axios";
 import Movie from "./Movie";
 
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
@@ -46,10 +46,14 @@ const Row = ({ title, url }) => {
   }, []);
 
   useEffect(() => {
-    fetch(url, options)
-      .then((response) => response.json())
-      .then((response) => setMovies(response.results))
-      .catch((err) => console.error(err));
+    axios
+      .get(url, {
+        params: {
+          api_key: "02a015f767f49fbd46124014022d6a5c"
+        },
+      })
+      .then((response) => setMovies(response.data.results))
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -71,7 +75,7 @@ const Row = ({ title, url }) => {
           className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
         >
           {movies.map((movie, id) => (
-            <Movie movie={movie} key={id}/>
+            <Movie movie={movie} key={id} />
           ))}
         </div>
         <FaChevronRight

@@ -1,15 +1,29 @@
 import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import MovieContext from "../context/MovieContext";
 
 const Movie = ({ movie }) => {
   const [like, setLike] = useState(false);
-  const { setSelectedMovie, setPlayer } = useContext(MovieContext);
+  const { selectedMovie, setSelectedMovie, setPlayer } = useContext(MovieContext);
 
   const handleMovieData = () => {
+    axios
+    .get(`https://api.themoviedb.org/3/movie/${movie?.id}?language=en-US`, {
+      params: {
+        api_key: "02a015f767f49fbd46124014022d6a5c",
+        append_to_response: "videos"
+      },
+    })
+    .then((response) => console.log(response.data.videos))
+    .catch((err) => console.log(err));
+
     setSelectedMovie({
+      id: movie?.id,
       title: movie?.title,
-      overview: movie?.overview
+      overview: movie?.overview,
+      releaseDate: movie?.releaseDate,
+      originalLanguage: movie?.originalLanguage
     })
     setPlayer(true);
   }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import options from "../Options";
+import axios from "axios";
+
 import MovieInfo from "../components/MovieInfo";
 import MovieContext from "../context/MovieContext";
 
@@ -8,7 +9,7 @@ import { FaStar } from "react-icons/fa";
 const Main = () => {
   const [movies, setMovies] = useState([]);
   const [featuredMovie, setFeaturedMovie] = useState();
-  const { player } = useContext(MovieContext)
+  const { player } = useContext(MovieContext);
 
   const truncateStr = (str, chars) => {
     if (str?.length > chars) {
@@ -19,13 +20,14 @@ const Main = () => {
   };
 
   useEffect(() => {
-    fetch(
-      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
-      options
-    )
-      .then((response) => response.json())
-      .then((response) => setMovies(response.results))
-      .catch((err) => console.error(err));
+    axios
+      .get("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1", {
+        params: {
+          api_key: "02a015f767f49fbd46124014022d6a5c",
+        },
+      })
+      .then((response) => setMovies(response.data.results))
+      .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
@@ -40,7 +42,7 @@ const Main = () => {
         <img
           src={`https://image.tmdb.org/t/p/original/${featuredMovie.backdrop_path}`}
           alt={featuredMovie.title}
-          className="w-full h-full object-cover object-top"
+          className="w-full h-full object-cover object-top transition"
         />
       )}
       <div className="absolute top-[50%] translate-y-[-50%] p-4 max-w-[90%] md:max-w-[65%] xl:max-w-[40%]">
