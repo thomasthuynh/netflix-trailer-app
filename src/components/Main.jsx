@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import options from "../Options";
 import MovieInfo from "../components/MovieInfo";
+import MovieContext from "../context/MovieContext";
 
 import { FaStar } from "react-icons/fa";
 
-const Main = ({ player, setPlayer }) => {
+const Main = () => {
   const [movies, setMovies] = useState([]);
   const [featuredMovie, setFeaturedMovie] = useState();
+  const { player } = useContext(MovieContext)
 
   const truncateStr = (str, chars) => {
     if (str?.length > chars) {
@@ -32,7 +34,7 @@ const Main = ({ player, setPlayer }) => {
 
   return (
     <div className="featuredImg w-full relative text-white h-[550px] xl:h-[700px]">
-      {player && <MovieInfo setPlayer={setPlayer} />}
+      {player && <MovieInfo />}
       <div className="absolute w-full h-[550px] xl:h-[700px] bg-gradient-to-r from-black"></div>
       {featuredMovie && (
         <img

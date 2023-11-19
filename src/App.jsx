@@ -1,17 +1,19 @@
-import Home from "./pages/Home"
-import Nav from "./components/Nav"
-import { Route, Routes } from "react-router-dom"
+import Home from "./pages/Home";
+import Nav from "./components/Nav";
+import { Route, Routes } from "react-router-dom";
+import { MovieProvider } from "./context/MovieContext";
 
 function App() {
-
   return (
     <>
       <Nav />
-      <Routes>
-        <Route path='/' element={<Home />} />
-      </Routes>
+      <MovieProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </MovieProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
