@@ -1,20 +1,21 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import ReactPlayer from "react-player";
 import MovieContext from "../context/MovieContext";
 
-import { AiTwotoneCloseCircle } from "react-icons/ai";
+import { IoMdClose } from "react-icons/io";
 
 const MovieInfo = () => {
   const { selectedMovie, setPlayer } = useContext(MovieContext);
-  const trailerKey = selectedMovie.video?.key
+  const trailerKey = selectedMovie.video?.key;
 
   return (
-    <div className="absolute h-[750px] w-[750px] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-33%] z-10 text-black bg-white">
-      <div className="relative h-2/3 ">
-        <AiTwotoneCloseCircle
-          size={40}
-          className="absolute -right-4 -top-4 cursor-pointer hover:brightness-90"
+    <div className="absolute h-[600px] md:h-[700px] lg:h-[750px] max-w-4xl w-[90%] sm:w-[85%] lg:w-[75%] top-20 left-[50%] translate-x-[-50%] z-20 text-white bg-neutral-900 rounded">
+      {/* Player */}
+      <div className="relative h-[50%] md:h-[60%] lg:h-[70%]">
+        <IoMdClose
+          size={30}
           onClick={() => setPlayer(false)}
+          className="absolute -right-3 -top-3 cursor-pointer hover:brightness-90 text-black bg-white rounded-full"
         />
         <ReactPlayer
           url={`https://www.youtube.com/watch?v=${trailerKey}`}
@@ -24,9 +25,31 @@ const MovieInfo = () => {
           playing={true}
         />
       </div>
-      <div>
-        <p>{selectedMovie.overview}</p>
+
+      {/* Details  */}
+      <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-6 p-4 lg:p-6 text-[11px] min-[400px]:text-xs md:text-sm">
+        <div className="lg:col-span-3">
+          <p className="text-green-400 font-semibold">
+            {(selectedMovie.rating * 10).toFixed(0)}% Match
+            <span className="ml-2 text-neutral-500">
+              {selectedMovie.releaseDate}
+            </span>
+          </p>
+          <p className="py-2 text-neutral-200">{selectedMovie.overview}</p>
+        </div>
+
+      {/* Categories  */}
+        <div>
+          <p className="text-neutral-500">
+            Genres:{" "}
+            {selectedMovie.genres?.map((genre, index) => (
+              <span key={index} className="text-neutral-200">{index !== 0 ? ", " : ""}{genre}</span>
+            ))}
+          </p>
+          <p className="py-0.5 text-neutral-500">Original Language:{" "}<span className="text-neutral-200">{selectedMovie.originalLanguage}</span></p>
+        </div>
       </div>
+
     </div>
   );
 };
