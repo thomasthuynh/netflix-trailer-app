@@ -4,10 +4,9 @@ import axios from "axios";
 const MovieContext = createContext();
 
 export const MovieProvider = ({ children }) => {
-
   const [selectedMovie, setSelectedMovie] = useState({});
-  const [player, setPlayer] = useState(false)
-  const [overlay, setOverlay] = useState(false)
+  const [player, setPlayer] = useState(false);
+  const [overlay, setOverlay] = useState(false);
 
   const handleMovieData = (id) => {
     axios
@@ -39,9 +38,28 @@ export const MovieProvider = ({ children }) => {
 
     setPlayer(true);
     setOverlay(true);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
-  return <MovieContext.Provider value={{ selectedMovie, setSelectedMovie, player, setPlayer, handleMovieData, overlay, setOverlay }}>{children}</MovieContext.Provider>;
+  return (
+    <MovieContext.Provider
+      value={{
+        selectedMovie,
+        setSelectedMovie,
+        player,
+        setPlayer,
+        handleMovieData,
+        overlay,
+        setOverlay,
+      }}
+    >
+      {children}
+    </MovieContext.Provider>
+  );
 };
 
 export default MovieContext;

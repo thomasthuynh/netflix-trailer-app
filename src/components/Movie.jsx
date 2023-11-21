@@ -1,10 +1,7 @@
-import React, { useState, useContext } from "react";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import React, { useContext } from "react";
 import MovieContext from "../context/MovieContext";
 
 const Movie = ({ movie }) => {
-  const [like, setLike] = useState(false);
-
   const { handleMovieData } = useContext(MovieContext);
 
   return (
@@ -20,13 +17,6 @@ const Movie = ({ movie }) => {
       >
         <p className="text-xs sm:text-s md:text-base lg:text-lg flex justify-center items-center h-full text-center p-3 whitespace-normal">
           {movie?.title}
-        </p>
-        <p>
-          {like ? (
-            <FaHeart className="absolute top-4 right-4 md:text-xl xl:text-2xl" />
-          ) : (
-            <FaRegHeart className="absolute top-4 right-4 md:text-xl xl:text-2xl" />
-          )}
         </p>
       </div>
     </div>
