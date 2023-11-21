@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
-import MovieInfo from "../components/MovieInfo";
 import MovieContext from "../context/MovieContext";
 
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaPlay } from "react-icons/fa";
 
 const Main = () => {
   const [movies, setMovies] = useState([]);
   const [featuredMovie, setFeaturedMovie] = useState({});
-  const { player } = useContext(MovieContext);
+  const { handleMovieData } = useContext(MovieContext);
 
   const truncateStr = (str, chars) => {
     if (str?.length > chars) {
@@ -30,8 +29,8 @@ const Main = () => {
         },
       })
       .then((response) => {
-        setMovies(response.data.results)
-        console.log("Request completed")
+        setMovies(response.data.results);
+        console.log("Request completed");
       })
       .catch((err) => console.log(err));
     console.log("First effect");
@@ -64,11 +63,12 @@ const Main = () => {
           </p>
         </div>
         <div>
-          <button className="bg-red-600 text-white border border-red-600 hover:bg-red-700 hover:border-red-700 px-5 py-3 rounded cursor-pointer mr-4 text-sm sm:text-base">
+          <button
+            onClick={() => handleMovieData(featuredMovie.id)}
+            className="bg-red-600 text-white border border-red-600 hover:bg-red-700 hover:border-red-700 flex items-center px-6 py-3 rounded cursor-pointer mr-4 text-sm sm:text-base"
+          >
+            <FaPlay className="mr-2"/>
             Play
-          </button>
-          <button className="bg-black border hover:bg-white hover:text-black px-5 py-3 rounded cursor-pointer text-sm sm:text-base">
-            Add to Favorites
           </button>
         </div>
       </div>

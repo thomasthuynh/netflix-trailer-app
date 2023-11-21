@@ -9,9 +9,9 @@ const MovieInfo = () => {
   const trailerKey = selectedMovie.video?.key;
 
   return (
-    <div className="absolute h-[600px] md:h-[700px] lg:h-[750px] max-w-4xl w-[90%] sm:w-[85%] lg:w-[75%] top-20 left-[50%] translate-x-[-50%] z-20 text-white bg-neutral-900 rounded">
+    <div className="absolute h-[600px] md:h-[700px] lg:h-[750px] max-w-4xl w-[90%] sm:w-[80%] lg:w-[75%] top-20 left-[50%] translate-x-[-50%] z-20 text-white bg-neutral-900 rounded">
       {/* Player */}
-      <div className="relative h-[50%] md:h-[60%] lg:h-[70%]">
+      <div className="relative h-[40%] min-[400px]:h-[50%] md:h-[60%] lg:h-[70%]">
         <IoMdClose
           size={30}
           onClick={() => setPlayer(false)}
@@ -27,7 +27,7 @@ const MovieInfo = () => {
       </div>
 
       {/* Details  */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-6 p-4 lg:p-6 text-[11px] min-[400px]:text-xs md:text-sm">
+      <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-6 p-4 lg:p-6 text-[11px] min-[40px]:text-xs md:text-sm">
         <div className="lg:col-span-3">
           <p className="text-green-400 font-semibold">
             {(selectedMovie.rating * 10).toFixed(0)}% Match
