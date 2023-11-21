@@ -5,8 +5,13 @@ import MovieContext from "../context/MovieContext";
 import { IoMdClose } from "react-icons/io";
 
 const MovieInfo = () => {
-  const { selectedMovie, setPlayer } = useContext(MovieContext);
+  const { selectedMovie, setPlayer, setOverlay } = useContext(MovieContext);
   const trailerKey = selectedMovie.video?.key;
+
+  const closePlayer = () => {
+    setPlayer(false)
+    setOverlay(false)
+  }
 
   return (
     <div className="absolute h-[600px] md:h-[700px] lg:h-[750px] max-w-4xl w-[90%] sm:w-[80%] lg:w-[75%] top-20 left-[50%] translate-x-[-50%] z-20 text-white bg-neutral-900 rounded">
@@ -14,7 +19,7 @@ const MovieInfo = () => {
       <div className="relative h-[40%] min-[400px]:h-[50%] md:h-[60%] lg:h-[70%]">
         <IoMdClose
           size={30}
-          onClick={() => setPlayer(false)}
+          onClick={closePlayer}
           className="absolute -right-3 -top-3 cursor-pointer hover:brightness-90 text-black bg-white rounded-full"
         />
         <ReactPlayer

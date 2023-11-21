@@ -7,6 +7,7 @@ export const MovieProvider = ({ children }) => {
 
   const [selectedMovie, setSelectedMovie] = useState({});
   const [player, setPlayer] = useState(false)
+  const [overlay, setOverlay] = useState(false)
 
   const handleMovieData = (id) => {
     axios
@@ -37,9 +38,10 @@ export const MovieProvider = ({ children }) => {
       .catch((err) => console.log(err));
 
     setPlayer(true);
+    setOverlay(true);
   };
 
-  return <MovieContext.Provider value={{ selectedMovie, setSelectedMovie, player, setPlayer, handleMovieData }}>{children}</MovieContext.Provider>;
+  return <MovieContext.Provider value={{ selectedMovie, setSelectedMovie, player, setPlayer, handleMovieData, overlay, setOverlay }}>{children}</MovieContext.Provider>;
 };
 
 export default MovieContext;
