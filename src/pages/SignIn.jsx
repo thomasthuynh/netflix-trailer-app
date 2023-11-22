@@ -6,7 +6,8 @@ import AuthContext from "../context/AuthContext";
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { user, login } = useContext(AuthContext)
+  const [error, setError] = useState("");
+  const { user, login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -17,6 +18,7 @@ const SignIn = () => {
       navigate("/");
     } catch (err) {
       console.log(err);
+      setError(err.message);
     }
   };
 
@@ -34,6 +36,9 @@ const SignIn = () => {
             Sign In
           </h1>
           <form className="flex flex-col w-full sm:w-[80%] mx-auto">
+            {error && (
+              <p className="text-center text-sm p-2 bg-red-500">{error}</p>
+            )}
             <input
               type="email"
               onChange={(e) => setEmail(e.target.value)}
@@ -46,7 +51,10 @@ const SignIn = () => {
               placeholder="Password"
               className="mb-4 p-2 rounded bg-gray-500 outline-0"
             />
-            <button onClick={handleSubmit} className="bg-red-600 text-white hover:bg-red-700 cursor-pointer px-5 py-3 my-3 rounded text-sm sm:text-base">
+            <button
+              onClick={handleSubmit}
+              className="bg-red-600 text-white hover:bg-red-700 cursor-pointer px-5 py-3 my-3 rounded text-sm sm:text-base"
+            >
               Sign In
             </button>
             <p className="text-neutral-500 text-sm sm:text-base py-4">

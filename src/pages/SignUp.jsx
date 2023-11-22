@@ -6,6 +6,7 @@ import AuthContext from "../context/AuthContext";
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const { user, createUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -17,6 +18,7 @@ const SignUp = () => {
       navigate("/");
     } catch (err) {
       console.log(err);
+      setError(err.message);
     }
   };
 
@@ -37,6 +39,9 @@ const SignUp = () => {
             onSubmit={handleSubmit}
             className="flex flex-col w-full sm:w-[80%] mx-auto"
           >
+            {error && (
+              <p className="text-center text-sm p-2 bg-red-500">{error}</p>
+            )}
             <input
               type="email"
               placeholder="Email"
