@@ -18,7 +18,7 @@ export const MovieProvider = ({ children }) => {
       })
       .then((response) => {
         const movieData = response.data;
-        console.log(movieData);
+        // console.log(movieData);
 
         setSelectedMovie({
           id: movieData.id,
@@ -27,6 +27,7 @@ export const MovieProvider = ({ children }) => {
           rating: movieData.vote_average,
           releaseDate: movieData.release_date,
           originalLanguage: movieData.original_language,
+          img: movieData.backdrop_path,
           genres: movieData.genres.map((genre) => genre.name),
           video:
             movieData.videos.results.find(
