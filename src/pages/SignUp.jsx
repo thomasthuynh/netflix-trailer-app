@@ -1,7 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import AuthContext from "../context/AuthContext";
 
 const SignUp = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { user, createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await createUser(email, password);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
       <div className="w-full h-screen">
@@ -15,15 +33,20 @@ const SignUp = () => {
           <h1 className="font-bold text-3xl sm:text-4xl text-center mb-4">
             Sign Up
           </h1>
-          <form className="flex flex-col w-full sm:w-[80%] mx-auto">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col w-full sm:w-[80%] mx-auto"
+          >
             <input
               type="email"
               placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
               className="my-4 p-2 rounded bg-gray-500 outline-0"
             />
             <input
               type="password"
               placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
               className="mb-4 p-2 rounded bg-gray-500 outline-0"
             />
             <button className="bg-red-600 text-white hover:bg-red-700 cursor-pointer px-5 py-3 my-3 rounded text-sm sm:text-base">

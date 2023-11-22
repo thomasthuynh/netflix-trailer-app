@@ -1,7 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import AuthContext from "../context/AuthContext";
 
 const SignIn = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { user, login } = useContext(AuthContext)
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await login(email, password);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
       <div className="w-full h-screen">
@@ -18,15 +36,17 @@ const SignIn = () => {
           <form className="flex flex-col w-full sm:w-[80%] mx-auto">
             <input
               type="email"
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               className="my-4 p-2 rounded bg-gray-500 outline-0"
             />
             <input
               type="password"
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               className="mb-4 p-2 rounded bg-gray-500 outline-0"
             />
-            <button className="bg-red-600 text-white hover:bg-red-700 cursor-pointer px-5 py-3 my-3 rounded text-sm sm:text-base">
+            <button onClick={handleSubmit} className="bg-red-600 text-white hover:bg-red-700 cursor-pointer px-5 py-3 my-3 rounded text-sm sm:text-base">
               Sign In
             </button>
             <p className="text-neutral-500 text-sm sm:text-base py-4">

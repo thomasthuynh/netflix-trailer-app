@@ -18,8 +18,8 @@ const Main = () => {
     }
   };
 
-  console.log(movies);
-  console.log(featuredMovie);
+  // console.log(movies);
+  // console.log(featuredMovie);
 
   useEffect(() => {
     axios
@@ -30,21 +30,21 @@ const Main = () => {
       })
       .then((response) => {
         setMovies(response.data.results);
-        console.log("Request completed");
+        // console.log("Request completed");
       })
       .catch((err) => console.log(err));
-    console.log("First effect");
+    // console.log("First effect");
   }, []);
 
   useEffect(() => {
     setFeaturedMovie(movies[Math.floor(Math.random() * movies.length)]);
-    console.log("Second effect");
+    // console.log("Second effect");
   }, [movies]);
 
   return (
     <div className="featuredImg w-full relative text-white h-[550px] xl:h-[700px]">
       <div className="absolute w-full h-[550px] xl:h-[700px] bg-gradient-to-r from-black"></div>
-      {featuredMovie && (
+      {featuredMovie?.backdrop_path && (
         <img
           src={`https://image.tmdb.org/t/p/original/${featuredMovie?.backdrop_path}`}
           alt={featuredMovie?.title}
