@@ -49,7 +49,7 @@ const Row = ({ title, url }) => {
     axios
       .get(url, {
         params: {
-          api_key: "02a015f767f49fbd46124014022d6a5c"
+          api_key: "02a015f767f49fbd46124014022d6a5c",
         },
       })
       .then((response) => setMovies(response.data.results))

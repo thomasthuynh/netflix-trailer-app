@@ -7,6 +7,7 @@ export const MovieProvider = ({ children }) => {
   const [selectedMovie, setSelectedMovie] = useState({});
   const [player, setPlayer] = useState(false);
   const [overlay, setOverlay] = useState(false);
+  const [savedItems, setSavedItems] = useState([]);
 
   const handleMovieData = (id) => {
     axios
@@ -53,9 +54,11 @@ export const MovieProvider = ({ children }) => {
         setSelectedMovie,
         player,
         setPlayer,
-        handleMovieData,
         overlay,
         setOverlay,
+        savedItems,
+        setSavedItems,
+        handleMovieData,
       }}
     >
       {children}

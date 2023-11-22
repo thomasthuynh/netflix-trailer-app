@@ -1,55 +1,61 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import ReactPlayer from "react-player";
 import MovieContext from "../context/MovieContext";
 import { db } from "../Firebase";
-import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { arrayUnion, doc, updateDoc, onSnapshot } from "firebase/firestore";
 import AuthContext from "../context/AuthContext";
 
-import { IoMdClose } from "react-icons/io";
+import { AiOutlineClose } from "react-icons/ai";
 import {
   IoIosAddCircleOutline,
   IoIosCheckmarkCircleOutline,
 } from "react-icons/io";
 
 const MovieInfo = () => {
-  const [added, setAdded] = useState(false);
-  const { selectedMovie, setPlayer, setOverlay } = useContext(MovieContext);
+  const { selectedMovie, setPlayer, setOverlay, savedItems, setSavedItems } =
+    useContext(MovieContext);
+  const { user } = useContext(AuthContext);
   const trailerKey = selectedMovie.video?.key;
-  const { user } = useContext(AuthContext)
-  
-  console.log("Rendered")
 
   const closePlayer = () => {
     setPlayer(false);
     setOverlay(false);
   };
 
-  const movieId = doc(db, "users", `${user?.email}`)
+  const movieId = doc(db, "users", `${user?.email}`);
 
   const addToWatchlist = async () => {
     if (user?.email) {
-      setAdded(!added)
       await updateDoc(movieId, {
         savedMovies: arrayUnion({
           id: selectedMovie.id,
           title: selectedMovie.title,
-          img: selectedMovie.img
-        })
-      })
+          img: selectedMovie.img,
+        }),
+      });
     } else {
-      alert("Please sign in to save a movie.")
+      alert("Please sign in to save a movie.");
     }
-  }
+  };
 
+  useEffect(() => {
+    onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
+      setSavedItems(doc.data()?.savedMovies);
+    });
+  }, [user?.email]);
+
+  const duplicateItem = savedItems.filter(
+    (item) => item.id === selectedMovie.id
+  );
 
   return (
     <div className="absolute h-[600px] md:h-[700px] lg:h-[750px] max-w-4xl w-[90%] sm:w-[80%] lg:w-[75%] top-20 left-[50%] translate-x-[-50%] z-20 text-white bg-neutral-900 rounded">
       {/* Player */}
       <div className="relative h-[40%] min-[400px]:h-[50%] md:h-[60%] lg:h-[70%]">
-        <IoMdClose
+        <AiOutlineClose
           size={30}
           onClick={closePlayer}
-          className="absolute -right-3 -top-3 cursor-pointer hover:brightness-75 text-black bg-white rounded-full"
+          className="absolute -right-3 -top-3 cursor-pointer hover:brightness-75 text-black bg-white rounded-full p-1"
         />
         <ReactPlayer
           url={`https://www.youtube.com/watch?v=${trailerKey}`}
@@ -89,9 +95,9 @@ const MovieInfo = () => {
               {selectedMovie.originalLanguage}
             </span>
           </p>
-          {added ? (
+          {duplicateItem[0]?.id === selectedMovie.id ? (
             <div className="my-2 flex items-center">
-              <IoIosCheckmarkCircleOutline 
+              <IoIosCheckmarkCircleOutline
                 size={30}
                 onClick={addToWatchlist}
                 className="hover:brightness-90 cursor-pointer mr-1"
