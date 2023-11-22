@@ -35,7 +35,11 @@ const SignIn = () => {
           <h1 className="font-bold text-3xl sm:text-4xl text-center mb-4">
             Sign In
           </h1>
-          <form className="flex flex-col w-full sm:w-[80%] mx-auto">
+          <form
+            id="signIn"
+            onSubmit={handleSubmit}
+            className="flex flex-col w-full sm:w-[80%] mx-auto"
+          >
             {error && (
               <p className="text-center text-sm p-2 bg-red-500">{error}</p>
             )}
@@ -51,10 +55,7 @@ const SignIn = () => {
               placeholder="Password"
               className="mb-4 p-2 rounded bg-gray-500 outline-0"
             />
-            <button
-              onClick={handleSubmit}
-              className="bg-red-600 text-white hover:bg-red-700 cursor-pointer px-5 py-3 my-3 rounded text-sm sm:text-base"
-            >
+            <button className="bg-red-600 text-white hover:bg-red-700 cursor-pointer px-5 py-3 my-3 rounded text-sm sm:text-base">
               Sign In
             </button>
             <p className="text-neutral-500 text-sm sm:text-base py-4">

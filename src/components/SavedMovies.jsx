@@ -9,12 +9,25 @@ import { AiOutlineClose } from "react-icons/ai";
 const SavedMovies = () => {
   const { user } = useContext(AuthContext);
   const { savedItems, setSavedItems } = useContext(MovieContext);
-  
+
+  const movieRef = doc(db, "users", `${user?.email}`);
+
   useEffect(() => {
-    onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
+    onSnapshot(movieRef, (doc) => {
       setSavedItems(doc.data()?.savedMovies);
     });
   }, [user?.email]);
+
+  const deleteMovie = async (passedId) => {
+    try {
+      const result = savedItems.filter((item) => item.id !== passedId)
+      await updateDoc(movieRef, {
+        savedMovies: result
+      })
+    } catch(err) {
+      console.log(err)
+    }
+  }
 
   return (
     <div>
@@ -32,7 +45,10 @@ const SavedMovies = () => {
               className="rounded"
             />
             <div className="absolute top-0 left-0 w-full h-full text-white hover:bg-black/75 opacity-0 hover:opacity-100">
-              <AiOutlineClose className="absolute right-3 top-3 cursor-pointer hover:brightness-75" />
+              <AiOutlineClose
+                onClick={() => deleteMovie(item?.id)}
+                className="absolute right-3 top-3 cursor-pointer hover:brightness-75"
+              />
               <p className="text-xs sm:text-s md:text-base lg:text-lg flex justify-center items-center h-full text-center p-3">
                 {item?.title}
               </p>

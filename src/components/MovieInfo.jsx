@@ -15,18 +15,18 @@ const MovieInfo = () => {
   const { selectedMovie, setPlayer, setOverlay, savedItems, setSavedItems } =
     useContext(MovieContext);
   const { user } = useContext(AuthContext);
-  const trailerKey = selectedMovie.video?.key;
+  const trailerKey = selectedMovie.video?.key
 
   const closePlayer = () => {
     setPlayer(false);
     setOverlay(false);
   };
-
-  const movieId = doc(db, "users", `${user?.email}`);
+  
+  const movieRef = doc(db, "users", `${user?.email}`);
 
   const addToWatchlist = async () => {
     if (user?.email) {
-      await updateDoc(movieId, {
+      await updateDoc(movieRef, {
         savedMovies: arrayUnion({
           id: selectedMovie.id,
           title: selectedMovie.title,
@@ -39,12 +39,14 @@ const MovieInfo = () => {
   };
 
   useEffect(() => {
-    onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
-      setSavedItems(doc.data()?.savedMovies);
-    });
+    if (user?.email) {
+      onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
+        setSavedItems(doc.data()?.savedMovies);
+      });
+    }
   }, [user?.email]);
 
-  const duplicateItem = savedItems.filter(
+  const [duplicateItem] = savedItems.filter(
     (item) => item.id === selectedMovie.id
   );
 
@@ -95,7 +97,7 @@ const MovieInfo = () => {
               {selectedMovie.originalLanguage}
             </span>
           </p>
-          {duplicateItem[0]?.id === selectedMovie.id ? (
+          {duplicateItem?.id === selectedMovie.id ? (
             <div className="my-2 flex items-center">
               <IoIosCheckmarkCircleOutline
                 size={30}

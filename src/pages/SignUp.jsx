@@ -36,6 +36,7 @@ const SignUp = () => {
             Sign Up
           </h1>
           <form
+            id="signUp"
             onSubmit={handleSubmit}
             className="flex flex-col w-full sm:w-[80%] mx-auto"
           >
