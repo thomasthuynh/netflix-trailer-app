@@ -40,9 +40,13 @@ const MovieInfo = () => {
 
   useEffect(() => {
     if (user?.email) {
-      onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
+      const unsubscribe = onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
         setSavedItems(doc.data()?.savedMovies);
       });
+
+      return () => {
+        unsubscribe()
+      }
     }
   }, [user?.email]);
 
@@ -97,7 +101,7 @@ const MovieInfo = () => {
               {selectedMovie.originalLanguage}
             </span>
           </p>
-          {duplicateItem?.id === selectedMovie.id ? (
+          {user?.email && (duplicateItem?.id === selectedMovie.id) ? (
             <div className="my-2 flex items-center">
               <IoIosCheckmarkCircleOutline
                 size={30}

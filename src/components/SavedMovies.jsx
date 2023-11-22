@@ -13,21 +13,27 @@ const SavedMovies = () => {
   const movieRef = doc(db, "users", `${user?.email}`);
 
   useEffect(() => {
-    onSnapshot(movieRef, (doc) => {
-      setSavedItems(doc.data()?.savedMovies);
-    });
+    if (user?.email) {
+      const unsubscribe = onSnapshot(movieRef, (doc) => {
+        setSavedItems(doc.data()?.savedMovies);
+      });
+
+      return () => {
+        unsubscribe()
+      }
+    }
   }, [user?.email]);
 
   const deleteMovie = async (passedId) => {
     try {
-      const result = savedItems.filter((item) => item.id !== passedId)
+      const result = savedItems.filter((item) => item.id !== passedId);
       await updateDoc(movieRef, {
-        savedMovies: result
-      })
-    } catch(err) {
-      console.log(err)
+        savedMovies: result,
+      });
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
 
   return (
     <div>

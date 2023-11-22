@@ -2,6 +2,7 @@ import React from "react";
 import SavedMovies from "../components/SavedMovies";
 
 const Account = () => {
+
   return (
     <div className="w-full h-screen text-white">
       <div className="w-full h-1/2 relative">
