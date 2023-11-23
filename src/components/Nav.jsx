@@ -17,7 +17,7 @@ const Nav = () => {
   };
 
   return (
-    <div className="flex justify-between items-center p-4 absolute w-full z-10">
+    <div className="flex justify-between items-center p-6 absolute w-full z-10">
       <Link to="/">
         <h1 className="text-red-600 font-bold cursor-pointer w-24 sm:w-36">
           <img className="w-full" src={Logo} alt="Netflix Logo" />

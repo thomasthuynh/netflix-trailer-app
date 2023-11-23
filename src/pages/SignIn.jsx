@@ -31,26 +31,28 @@ const SignIn = () => {
           alt="/"
         />
         <div className="absolute w-full h-screen top-0 left-0 bg-black/60"></div>
-        <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-black/75 text-white rounded px-8 min-[400px]:px-12 sm:px-16 py-16 sm:py-24 w-[90%] max-w-[350px] sm:max-w-[450px] h-[450px] sm:h-[600px]">
+        <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-black/75 text-white rounded px-8 min-[400px]:px-12 sm:px-16 py-12 sm:py-20 w-[85%] max-w-[350px] sm:max-w-[425px] h-[425px] sm:h-[550px]">
           <h1 className="font-bold text-3xl sm:text-4xl text-center mb-4">
             Sign In
           </h1>
           <form
-            id="signIn"
+            action="submit"
             onSubmit={handleSubmit}
-            className="flex flex-col w-full sm:w-[80%] mx-auto"
+            className="flex flex-col w-[90%] mx-auto"
           >
             {error && (
               <p className="text-center text-sm p-2 bg-red-500">{error}</p>
             )}
             <input
               type="email"
+              id="email"
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               className="my-4 p-2 rounded bg-gray-500 outline-0"
             />
             <input
               type="password"
+              id="password"
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               className="mb-4 p-2 rounded bg-gray-500 outline-0"

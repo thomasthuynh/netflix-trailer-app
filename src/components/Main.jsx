@@ -51,7 +51,7 @@ const Main = () => {
           className="w-full h-full object-cover object-top transition"
         />
       )}
-      <div className="absolute top-[50%] translate-y-[-50%] p-4 max-w-[90%] md:max-w-[65%] xl:max-w-[40%]">
+      <div className="absolute top-[50%] translate-y-[-50%] p-6 max-w-[90%] md:max-w-[65%] xl:max-w-[40%]">
         <div>
           <h1 className="text-3xl sm:text-5xl my-4">{featuredMovie?.title}</h1>
           <p className="text-sm sm:text-base">

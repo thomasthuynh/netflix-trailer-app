@@ -15,13 +15,13 @@ const MovieInfo = () => {
   const { selectedMovie, setPlayer, setOverlay, savedItems, setSavedItems } =
     useContext(MovieContext);
   const { user } = useContext(AuthContext);
-  const trailerKey = selectedMovie.video?.key
+  const trailerKey = selectedMovie.video?.key;
 
   const closePlayer = () => {
     setPlayer(false);
     setOverlay(false);
   };
-  
+
   const movieRef = doc(db, "users", `${user?.email}`);
 
   const addToWatchlist = async () => {
@@ -38,15 +38,29 @@ const MovieInfo = () => {
     }
   };
 
+  const deleteMovie = async (passedId) => {
+    try {
+      const result = savedItems.filter((item) => item.id !== passedId);
+      await updateDoc(movieRef, {
+        savedMovies: result,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     if (user?.email) {
-      const unsubscribe = onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
-        setSavedItems(doc.data()?.savedMovies);
-      });
+      const unsubscribe = onSnapshot(
+        doc(db, "users", `${user?.email}`),
+        (doc) => {
+          setSavedItems(doc.data()?.savedMovies);
+        }
+      );
 
       return () => {
-        unsubscribe()
-      }
+        unsubscribe();
+      };
     }
   }, [user?.email]);
 
@@ -55,9 +69,9 @@ const MovieInfo = () => {
   );
 
   return (
-    <div className="absolute h-[600px] md:h-[700px] lg:h-[750px] max-w-4xl w-[90%] sm:w-[80%] lg:w-[75%] top-20 left-[50%] translate-x-[-50%] z-20 text-white bg-neutral-900 rounded">
+    <div className="absolute max-w-4xl w-[90%] sm:w-[80%] lg:w-[75%] top-20 left-[50%] translate-x-[-50%] z-20 text-white bg-neutral-900 rounded">
       {/* Player */}
-      <div className="relative h-[40%] min-[400px]:h-[50%] md:h-[60%] lg:h-[70%]">
+      <div className="relative h-[300px] min-[400px]:h-[350px] md:h-[475px] lg:h-[550px]">
         <AiOutlineClose
           size={30}
           onClick={closePlayer}
@@ -69,6 +83,7 @@ const MovieInfo = () => {
           height={"100%"}
           controls={true}
           playing={true}
+          className="h-[500px]"
         />
       </div>
 
@@ -101,11 +116,11 @@ const MovieInfo = () => {
               {selectedMovie.originalLanguage}
             </span>
           </p>
-          {user?.email && (duplicateItem?.id === selectedMovie.id) ? (
+          {user?.email && duplicateItem?.id === selectedMovie.id ? (
             <div className="my-2 flex items-center">
               <IoIosCheckmarkCircleOutline
                 size={30}
-                onClick={addToWatchlist}
+                onClick={() => deleteMovie(selectedMovie?.id)}
                 className="hover:brightness-90 cursor-pointer mr-1"
               />
               <p className="text-neutral-500">Saved to Watchlist</p>

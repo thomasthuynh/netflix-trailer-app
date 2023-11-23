@@ -58,7 +58,7 @@ const Row = ({ title, url }) => {
 
   return (
     <div>
-      <h2 className=" text-white font-bold p-4 sm:text-lg ">{title}</h2>
+      <h2 className=" text-white p-4 font-bold sm:text-lg ">{title}</h2>
 
       <div className="relative flex items-center group">
         <FaChevronLeft
@@ -72,7 +72,7 @@ const Row = ({ title, url }) => {
         />
         <div
           ref={sliderRef}
-          className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
+          className="w-full h-full px-1.5 overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
         >
           {movies.map((movie, id) => (
             <Movie movie={movie} key={id} />
