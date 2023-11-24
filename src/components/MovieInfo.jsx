@@ -69,7 +69,7 @@ const MovieInfo = () => {
   );
 
   return (
-    <div className="absolute max-w-4xl w-[90%] sm:w-[80%] lg:w-[75%] top-20 left-[50%] translate-x-[-50%] z-20 text-white bg-neutral-900 rounded">
+    <div className="absolute max-w-4xl w-[90%] sm:w-[80%] lg:w-[75%] top-20 left-[50%] translate-x-[-50%] text-white bg-neutral-900 rounded z-40">
       {/* Player */}
       <div className="relative h-[300px] min-[400px]:h-[350px] md:h-[475px] lg:h-[550px]">
         <AiOutlineClose

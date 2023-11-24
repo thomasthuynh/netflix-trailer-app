@@ -16,7 +16,7 @@ body {
 }
 
 .fadeIn {
-  animation: fadeIn 1s ease-out;
+  animation: fadeIn 1500ms ease-out;
 }
 
 @keyframes fadeSmooth {
@@ -29,7 +29,7 @@ body {
 }
 
 .fadeSmooth {
-  animation: fadeSmooth 1s linear;
+  animation: fadeSmooth 1500ms linear;
 }
 
 .featuredImg::after {
