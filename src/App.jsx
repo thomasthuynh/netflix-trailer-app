@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { Route, Routes } from "react-router-dom";
 import { MovieProvider } from "./context/MovieContext";
 import { AuthContextProvider } from "./context/AuthContext";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
           </Routes>
+          <Footer />
         </MovieProvider>
       </AuthContextProvider>
     </>

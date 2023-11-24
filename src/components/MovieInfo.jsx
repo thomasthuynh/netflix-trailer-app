@@ -121,7 +121,7 @@ const MovieInfo = () => {
               <IoIosCheckmarkCircleOutline
                 size={30}
                 onClick={() => deleteMovie(selectedMovie?.id)}
-                className="hover:brightness-90 cursor-pointer mr-1"
+                className="hover:brightness-75 cursor-pointer mr-1"
               />
               <p className="text-neutral-500">Saved to Watchlist</p>
             </div>

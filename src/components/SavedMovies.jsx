@@ -19,8 +19,8 @@ const SavedMovies = () => {
       });
 
       return () => {
-        unsubscribe()
-      }
+        unsubscribe();
+      };
     }
   }, [user?.email]);
 
@@ -36,7 +36,7 @@ const SavedMovies = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-[450px]">
       <h2 className=" text-white font-bold p-4 sm:text-lg ">Saved Movies</h2>
 
       <div className="relative flex flex-wrap items-center px-1.5">

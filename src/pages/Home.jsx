@@ -4,6 +4,7 @@ import Row from "../components/Row";
 import MovieContext from "../context/MovieContext";
 import MovieInfo from "../components/MovieInfo";
 import Overlay from "../components/Overlay";
+import Footer from "../components/Footer";
 
 
 const Home = () => {
