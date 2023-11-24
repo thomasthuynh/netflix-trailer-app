@@ -6,8 +6,34 @@ body {
   background-color: #000;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeSmooth {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeSmooth {
+  animation: fadeSmooth 1s linear;
+}
+
 .featuredImg::after {
-  content: '';
+  content: "";
   @apply absolute bottom-0 left-0 right-0 h-[25%];
-  @apply bg-gradient-to-t from-black
+  @apply bg-gradient-to-t from-black;
 }
