@@ -19,7 +19,6 @@ export const MovieProvider = ({ children }) => {
       })
       .then((response) => {
         const movieData = response.data;
-        // console.log(movieData);
 
         setSelectedMovie({
           id: movieData.id,

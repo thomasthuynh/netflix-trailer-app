@@ -2,9 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="border-t-4 border-red-600 border-t py-8 w-[90%] mx-auto mt-16 sm:mt-32">
+    <div className="border-t-4 border-red-600 py-8 w-[90%] mx-auto mt-16 sm:mt-32">
       <div className="grid grid-cols-2 gap-4 sm:gap-6 sm:grid-cols-4 text-neutral-500 max-w-[1240px] mx-auto p-4 text-sm leading-6 sm:text-base sm:leading-8">
-
         <div>
           <ul>
             <li>About Us</li>

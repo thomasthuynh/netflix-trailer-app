@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import MovieContext from "../context/MovieContext";
 
 const Movie = ({ movie }) => {
-  const {handleMovieData } = useContext(MovieContext);
+  const { handleMovieData } = useContext(MovieContext);
 
   return (
     <div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] p-2 mx-1 rounded cursor-pointer relative inline-block hover:scale-105 transition ease-linear">
