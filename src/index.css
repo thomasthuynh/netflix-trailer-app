@@ -6,7 +6,7 @@ body {
   background-color: #000;
 }
 
-@keyframes fadeIn {
+/* @keyframes fadeIn {
   from {
     opacity: 0;
   }
@@ -17,9 +17,9 @@ body {
 
 .fadeIn {
   animation: fadeIn 1500ms ease-out;
-}
+} */
 
-@keyframes fadeSmooth {
+/* @keyframes fadeSmooth {
   from {
     opacity: 0;
   }
@@ -30,7 +30,7 @@ body {
 
 .fadeSmooth {
   animation: fadeSmooth 1500ms linear;
-}
+} */
 
 .featuredImg::after {
   content: "";

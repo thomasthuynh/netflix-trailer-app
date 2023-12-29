@@ -42,11 +42,11 @@ const Main = () => {
         <img
           src={`https://image.tmdb.org/t/p/original/${featuredMovie?.backdrop_path}`}
           alt={featuredMovie?.title}
-          className="fadeIn h-full w-full object-cover object-top"
+          className="animate-fade h-full w-full object-cover object-top"
         />
       )}
-      <div className="absolute top-[50%] z-20 max-w-[90%] translate-y-[-50%] p-6 md:max-w-[65%] xl:max-w-[40%]">
-        <div className="fade">
+      <div className="animate-fade absolute top-1/2 z-20 max-w-[90%] -translate-y-1/2 p-6 md:max-w-[65%] xl:max-w-[40%]">
+        <div>
           <h1 className="my-6 text-3xl sm:text-5xl">{featuredMovie?.title}</h1>
           <p className="text-sm sm:text-base xl:text-lg">
             {truncateStr(featuredMovie?.overview, 200)}
