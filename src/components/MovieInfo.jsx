@@ -55,7 +55,7 @@ const MovieInfo = () => {
         doc(db, "users", `${user?.email}`),
         (doc) => {
           setSavedItems(doc.data()?.savedMovies);
-        }
+        },
       );
 
       return () => {
@@ -65,17 +65,17 @@ const MovieInfo = () => {
   }, [user?.email]);
 
   const [duplicateItem] = savedItems.filter(
-    (item) => item.id === selectedMovie.id
+    (item) => item.id === selectedMovie.id,
   );
 
   return (
-    <div className="absolute max-w-4xl w-[90%] sm:w-[80%] lg:w-[75%] top-20 left-[50%] translate-x-[-50%] text-white bg-neutral-900 rounded z-40">
+    <div className="absolute left-[50%] top-20 z-40 w-[90%] max-w-4xl translate-x-[-50%] rounded bg-neutral-900 text-white sm:w-[80%] lg:w-[75%]">
       {/* Player */}
       <div className="relative h-[300px] min-[400px]:h-[350px] md:h-[475px] lg:h-[550px]">
         <AiOutlineClose
           size={30}
           onClick={closePlayer}
-          className="absolute -right-3 -top-3 cursor-pointer hover:brightness-75 text-black bg-white rounded-full p-1"
+          className="absolute -right-3 -top-3 cursor-pointer rounded-full bg-white p-1 text-black hover:brightness-75"
         />
         <ReactPlayer
           url={`https://www.youtube.com/watch?v=${trailerKey}`}
@@ -88,9 +88,9 @@ const MovieInfo = () => {
       </div>
 
       {/* Details  */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-6 p-4 lg:p-6 text-[11px] min-[40px]:text-xs md:text-sm">
+      <div className="grid grid-cols-1 p-4 text-[11px] min-[40px]:text-xs md:text-sm lg:grid-cols-4 lg:gap-6 lg:p-6">
         <div className="lg:col-span-3">
-          <p className="text-green-400 font-semibold">
+          <p className="font-semibold text-green-400">
             {(selectedMovie.rating * 10).toFixed(0)}% Match
             <span className="ml-2 text-neutral-500">
               {selectedMovie.releaseDate}
@@ -110,27 +110,27 @@ const MovieInfo = () => {
               </span>
             ))}
           </p>
-          <p className="py-0.5 text-neutral-500">
+          <p className="py-1 text-neutral-500">
             Original Language:{" "}
             <span className="text-neutral-200">
               {selectedMovie.originalLanguage}
             </span>
           </p>
           {user?.email && duplicateItem?.id === selectedMovie.id ? (
-            <div className="my-2 flex items-center">
+            <div className="mt-2 flex items-center">
               <IoIosCheckmarkCircleOutline
                 size={30}
                 onClick={() => deleteMovie(selectedMovie?.id)}
-                className="hover:brightness-75 cursor-pointer mr-1"
+                className="mr-2 cursor-pointer hover:brightness-75"
               />
               <p className="text-neutral-500">Saved to Watchlist</p>
             </div>
           ) : (
-            <div className="my-2 flex items-center">
+            <div className="mt-2 flex items-center">
               <IoIosAddCircleOutline
                 size={30}
                 onClick={addToWatchlist}
-                className="hover:brightness-75 cursor-pointer mr-1"
+                className="mr-2 cursor-pointer hover:brightness-75"
               />
               <p className="text-neutral-500">Add to Watchlist</p>
             </div>

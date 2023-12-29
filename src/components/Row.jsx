@@ -58,21 +58,21 @@ const Row = ({ title, url }) => {
 
   return (
     <div>
-      <h2 className=" text-white p-4 font-bold sm:text-lg ">{title}</h2>
+      <h2 className=" p-4 font-bold text-white sm:text-lg ">{title}</h2>
 
-      <div className="relative flex items-center group">
+      <div className="group relative flex items-center">
         <FaChevronLeft
           size={50}
           onClick={slideLeft}
           className={
             leftSlider
-              ? "absolute left-4 hidden bg-white rounded-full opacity-75 hover:opacity-100 z-10 cursor-pointer group-hover:block p-2"
+              ? "absolute left-4 z-10 hidden cursor-pointer rounded-full bg-white p-2 opacity-75 hover:opacity-100 group-hover:block"
               : "hidden"
           }
         />
         <div
           ref={sliderRef}
-          className="w-full h-full px-1.5 overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
+          className="relative h-full w-full overflow-x-scroll scroll-smooth whitespace-nowrap px-1.5 scrollbar-hide"
         >
           {movies.map((movie, id) => (
             <Movie movie={movie} key={id} />
@@ -83,7 +83,7 @@ const Row = ({ title, url }) => {
           onClick={slideRight}
           className={
             rightSlider
-              ? "absolute right-4 hidden bg-white rounded-full opacity-75 hover:opacity-100 z-10 cursor-pointer group-hover:block p-2"
+              ? "absolute right-4 z-10 hidden cursor-pointer rounded-full bg-white p-2 opacity-75 hover:opacity-100 group-hover:block"
               : "hidden"
           }
         />

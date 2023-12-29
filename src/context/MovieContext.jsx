@@ -31,7 +31,7 @@ export const MovieProvider = ({ children }) => {
           genres: movieData.genres.map((genre) => genre.name),
           video:
             movieData.videos.results.find(
-              (video) => video.name === "Official Trailer"
+              (video) => video.name === "Official Trailer",
             ) || movieData.videos.results[0],
         });
       })

@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
+    <div className="mx-auto max-w-[2560px]">
       <AuthContextProvider>
         <Nav />
         <MovieProvider>
@@ -31,7 +31,7 @@ function App() {
           <Footer />
         </MovieProvider>
       </AuthContextProvider>
-    </>
+    </div>
   );
 }
 

@@ -17,9 +17,9 @@ const Nav = () => {
   };
 
   return (
-    <div className="flex justify-between items-center p-6 absolute w-full z-20">
+    <div className="absolute z-20 flex w-full items-center justify-between p-6 max-w-[2560px]">
       <Link to="/">
-        <h1 className="text-red-600 font-bold cursor-pointer w-24 sm:w-36">
+        <h1 className="w-24 cursor-pointer font-bold text-red-600 sm:w-36">
           <img className="w-full" src={Logo} alt="Netflix Logo" />
         </h1>
       </Link>
@@ -27,13 +27,13 @@ const Nav = () => {
       {user?.email ? (
         <div>
           <Link to="/account">
-            <button className="text-white mr-4 hover:text-white/90 cursor-pointer text-sm sm:text-base">
+            <button className="mr-4 cursor-pointer text-sm text-white hover:text-white/90 sm:text-base">
               Account
             </button>
           </Link>
           <button
             onClick={handleSignOut}
-            className="bg-red-600 text-white hover:bg-red-700 cursor-pointer px-5 py-3 rounded text-sm sm:text-base"
+            className="cursor-pointer rounded bg-red-600 px-5 py-3 text-sm text-white hover:bg-red-700 sm:text-base"
           >
             Sign Out
           </button>
@@ -41,12 +41,12 @@ const Nav = () => {
       ) : (
         <div>
           <Link to="/signin">
-            <button className="text-white mr-4 hover:text-white/90 cursor-pointer text-sm sm:text-base">
+            <button className="mr-4 cursor-pointer text-sm text-white hover:text-white/90 sm:text-base">
               Sign In
             </button>
           </Link>
           <Link to="/signup">
-            <button className="bg-red-600 text-white hover:bg-red-700 cursor-pointer px-5 py-3 rounded text-sm sm:text-base">
+            <button className="cursor-pointer rounded bg-red-600 px-5 py-3 text-sm text-white hover:bg-red-700 sm:text-base">
               Sign Up
             </button>
           </Link>
