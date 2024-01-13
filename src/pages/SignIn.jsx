@@ -4,8 +4,8 @@ import { useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("test@email.com");
+  const [password, setPassword] = useState("password");
   const [error, setError] = useState("");
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -48,6 +48,7 @@ const SignIn = () => {
               id="email"
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
+              value={email}
               className="my-4 rounded bg-gray-500 p-2 outline-0"
             />
             <input
@@ -55,6 +56,7 @@ const SignIn = () => {
               id="password"
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
+              value={password}
               className="mb-4 rounded bg-gray-500 p-2 outline-0"
             />
             <button className="my-3 cursor-pointer rounded bg-red-600 px-5 py-3 text-sm text-white hover:bg-red-700 sm:text-base">
@@ -62,7 +64,7 @@ const SignIn = () => {
             </button>
             <p className="py-4 text-sm text-neutral-500 sm:text-base">
               Don't have an account yet?{" "}
-              <Link to="/signin">
+              <Link to="/signup">
                 <span className="text-white hover:opacity-75">Sign Up</span>
               </Link>
             </p>
